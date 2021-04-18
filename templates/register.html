@@ -1,18 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-<style>
-body {
-  background-image: url("https://sun9-70.userapi.com/impg/iSEOWE_LK7FMbVhRPS-9h1TWHSgugqlRTDjWLw/BpBMvNHkqaw.jpg?size=1920x1080&quality=96&sign=f8484a7209a22016ebaa7f6d3b1c6fff&type=album");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-attachment: fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-</style>
 <center><font color="white" face="JasmineUPC"><h1>Регистрация</h1></font></center>
 <form action="" method="post">
     {{ form.hidden_tag() }}
@@ -48,7 +36,7 @@ body {
             </p>
         {% endfor %}
     </p>
-    <p>{{ form.submit(type="submit", class="btn btn-outline-light") }}</p>
+    <p>{{ form.submit(type="submit", class="btn btn-outline-light") }} <a href="/login" type="button" class="btn btn-link btn-sm">У меня уже есть аккаунт</a></p>
     <div class="shadow p-3 mb-5 bg-body rounded"><font color="white" face="JasmineUPC"> {{message}} </font></div>
 </form>
 {% endblock %}
