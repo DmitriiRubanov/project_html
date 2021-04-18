@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+body {
+  background-image: url("https://sun9-70.userapi.com/impg/iSEOWE_LK7FMbVhRPS-9h1TWHSgugqlRTDjWLw/BpBMvNHkqaw.jpg?size=1920x1080&quality=96&sign=f8484a7209a22016ebaa7f6d3b1c6fff&type=album");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+</style>
+<center><font color="white" face="JasmineUPC"><h1>Регистрация</h1></font></center>
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.email(class="form-control", type="email", id="exampleFormControlInput1", placeholder="Введите адрес электронной почты") }}<br>
+        {% for error in form.email.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.password(class="form-control", type="password", placeholder="Введите пароль") }}<br>
+        {% for error in form.password.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.password_again(class="form-control", type="password", placeholder="Повторите пароль") }}<br>
+        {% for error in form.password_again.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.name(class="form-control", placeholder="Введите ваше имя") }}<br>
+        {% for error in form.name.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>{{ form.submit(type="submit", class="btn btn-outline-light") }}</p>
+    <div class="shadow p-3 mb-5 bg-body rounded"><font color="white" face="JasmineUPC"> {{message}} </font></div>
+</form>
+{% endblock %}
