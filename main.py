@@ -67,6 +67,7 @@ def logout():
 
 
 @app.route('/product_menu')
+@login_required
 def shop():
     return render_template('shop.html')
 

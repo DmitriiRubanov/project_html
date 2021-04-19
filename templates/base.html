@@ -29,6 +29,9 @@ body {
       <img src="https://sun9-15.userapi.com/impg/hrEgCw0TPkQl5YrILGdsJiEQU9YBPQqaLMHulA/zV1U5f8wYlg.jpg?size=714x714&quality=96&sign=804dd2617a3bc604d0b6ba78ff8addd1&type=album" alt="" width="30" height="30" class="d-inline-block align-text-top">
       Home Workshop
     </a>
+      {% if current_user.is_authenticated %}
+    <a class="navbar-brand" href="/logout">Выйти</a>
+      {% endif %}
   </div>
 </nav>
 </header>
