@@ -68,8 +68,7 @@ def logout():
 
 @app.route('/product_menu')
 def shop():
-    return """<a href="/logout" type="button" class="btn btn-outline-primary"
-     style="position: absolute; left: 783px; top: 387px; width: 210px">Выйти</a>"""
+    return render_template('shop.html')
 
 
 if __name__ == '__main__':
