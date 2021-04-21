@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="card" style="width: 75rem; height: 50rem">
-<div class="card border-light" style="width: 18rem;">
-<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+<div class="card mb-3" style="width: 75rem; height: 37rem">
+<div class="row g-2">
+    <div class="col-md-6">
+<div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade" data-bs-ride="carousel">
   <div class="carousel-inner data-bs-interval='5'">
     <div class="carousel-item active">
       <img src="{{ photo1 }}" class="d-block w-100" alt="...">
@@ -16,7 +17,21 @@
     </div>
   </div>
 </div>
-</div> <h5>лох</h5>
+</div>
+ <div class="col-md-6">
+      <div class="card-body">
+        <h5 class="card-title" style="font-weight:bold; font-size: 35px">{{ name }}</h5>
+        <h5 class="card-title" align="right" style="font-weight:bold; font-size: 35px"> Цена: {{ price }} </h5>
+        <div class="card border-dark mb-0">
+          <h5 class="card-text" style="font-size: 20px">{{ about }} </h5>
+        </div>
+        <h5 class="card-text" style="font-size: 18px">Хотите изделие из дерева в каком-то определенном стиле и цвете, обратитесь к мастеру, его данные указаны на футере сайта.</h5>
+      <a href="#" class="btn btn-success btn-lg disabled" tabindex="-1" role="button" aria-disabled="true">Оформить заказ</a>
+      </div>
     </div>
+  </div>
+</div>
+
+
 
 {% endblock %}
