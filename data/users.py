@@ -18,7 +18,6 @@ class User(SqlAlchemyBase, UserMixin, SerializerMixin):
     hashed_password = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     created_date = sqlalchemy.Column(sqlalchemy.DateTime, default=datetime.datetime.now)
     status = sqlalchemy.Column(sqlalchemy.String, nullable=True, default='user')
-    wishful = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
 
     def set_password(self, password):
         self.hashed_password = generate_password_hash(password)

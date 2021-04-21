@@ -1,15 +1,29 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, jsonify, make_response
 from forms.loginform import LoginForm
 from forms.users import RegisterForm
-from data import db_session
+from data import db_session, products_api
 from data.users import User
 from flask_login import LoginManager, login_user, login_required, logout_user
+from flask_restful import Api
+import product_resurs
+from data.product import Product
 
-db_session.global_init("db/blogs.db")
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
+api = Api(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
+app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
+
+
+def main():
+    db_session.global_init("db/blogs.db")
+    app.register_blueprint(products_api.blueprint)
+    # для списка объектов
+    api.add_resource(product_resurs.ProductResource, '/api/v2/product')
+
+    # для одного объекта
+    api.add_resource(product_resurs.ProductsListResource, '/api/v2/product/<int:product_id>')
+    app.run()
 
 
 @app.route('/')
@@ -214,7 +228,7 @@ def tablet():
     param[
         'about'] = 'Табличка на дом — это не только показатель адреса вашего дома, но и его украшение.'
     param[
-        'photo1'] = 'https://sun9-76.userapi.com/impg/7EbGXPA-CsBl6LXMFeC6xzKsAf6AR6Wnz0psrg/b8ySQGcqCMc.jpg?size=2160x2160&quality=96&sign=cae9ab7b819259946147d89ce9f8dc75&type=album'
+        'photo1'] ='https://sun9-76.userapi.com/impg/7EbGXPA-CsBl6LXMFeC6xzKsAf6AR6Wnz0psrg/b8ySQGcqCMc.jpg?size=2160x2160&quality=96&sign=cae9ab7b819259946147d89ce9f8dc75&type=album'
     param[
         'photo2'] = 'https://sun9-15.userapi.com/impg/ufpzDC77kr_Ky1RATvh7kgmZfACIRQMDXKlkSA/Ybw8o_U2bew.jpg?size=2160x2160&quality=96&sign=749f48e162e74940ea6659c0bad5498e&type=album'
     param[
@@ -239,5 +253,10 @@ def photoframe():
     return render_template('product.html', title=param['name'], **param)
 
 
+@app.errorhandler(404)
+def not_found(error):
+    return make_response(jsonify({'error': 'Not found'}), 404)
+
+
 if __name__ == '__main__':
-    app.run(port=8080, host='127.0.0.1')
+    main()
