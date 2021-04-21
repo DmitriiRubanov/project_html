@@ -6,6 +6,7 @@ from data.users import User
 from flask_login import LoginManager, login_user, login_required, logout_user
 from flask_restful import Api
 import product_resurs
+import os
 from data.product import Product
 
 app = Flask(__name__)
@@ -23,7 +24,8 @@ def main():
 
     # для одного объекта
     api.add_resource(product_resurs.ProductsListResource, '/api/v2/product/<int:product_id>')
-    app.run()
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
 
 
 @app.route('/')
