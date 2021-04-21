@@ -69,7 +69,20 @@ def logout():
 @app.route('/product_menu')
 @login_required
 def shop():
-    return render_template('shop.html')
+    return render_template('shop.html', title='Магазин "Home Workshop"')
+
+
+@app.route('/product_menu/hanger')
+@login_required
+def hanger():
+    param = {}
+    param['name'] = 'Вешалки'
+    param['price'] = '500₽'
+    param['about'] = 'Вешалка (также плечики, тремпель) — приспособление для хранения одежды в подвешенном состоянии.'
+    param['photo1'] = 'https://sun9-35.userapi.com/impg/lJageeas3J5KmopnrOR3N6tr9MhbXuntT6BorQ/E4IT0I_SWfY.jpg?size=2160x2160&quality=96&sign=296e013d39bd74f6f1768729516267b9&type=album'
+    param['photo2'] = 'https://sun9-4.userapi.com/impg/paLn8HVzn2D5nryUFgdhbQOhRWqmpdr67mH6Qw/L3cQftEq4CU.jpg?size=2160x2160&quality=96&sign=811a5adbdccb735f8a6c269683f6f6fe&type=album'
+    param['photo3'] = 'https://sun9-27.userapi.com/impg/pRN4fn5X2E7kHLiMAhYUOhRMdKuNnEuJpGwEJA/jusn1-CMtig.jpg?size=2160x2160&quality=96&sign=cf0080d00104127eda83990582a4bb94&type=album'
+    return render_template('product.html', **param)
 
 
 if __name__ == '__main__':
